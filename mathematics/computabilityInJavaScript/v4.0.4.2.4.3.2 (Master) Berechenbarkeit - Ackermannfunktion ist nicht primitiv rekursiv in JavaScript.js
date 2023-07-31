@@ -3,7 +3,7 @@
 /* v4.0.4.2.4.3.2 (Master) Berechenbarkeit - Ackermannfunktion ist nicht primitiv rekursiv          */
 /*                                           in JavaScript                                          */
 /*                                                                                                  */
-/* Copyright (C) 2021 Kategory GmbH & Co. KG (joerg.kunze@kategory.de)                              */
+/* Copyright (C) 2023 Kategory GmbH & Co. KG (joerg.kunze@kategory.de)                              */
 /*                                                                                                  */
 /* This program is part of kategoryEducation.                                                       */
 /*                                                                                                  */
@@ -120,8 +120,6 @@ const successor = function() {
 /* execute:                                                                                       */
 /*------------------------------------------------------------------------------------------------*/
 {
-   console.log( "" );
-   console.log( "moreReadable: --------------------------------------------" );
    const s  = successor();
 
    const c0 = constant( 0 );
@@ -154,7 +152,6 @@ const successor = function() {
    const factorial = recursion( c1       , composition( times   , n_plus_1, h ) );
    const power     = recursion( c1       , composition( times   , x       , h ) );
 
-
    console.log( plus( 42, 5 ) );
    console.log( plus( 0, 5 ) );
    console.log( times( 0, 5 ) );
@@ -165,17 +162,16 @@ const successor = function() {
 
    console.log( power( 3, 5 ) );
 
-   const A = function( name, decoratedFunction ) {
-      console.log( name + " is majorated by A( " + decoratedFunction.ackermann + ", n )." );
-   };
-
-   A( "s", s );
-   A( "x0", x0 );
-   A( "c0", c0 );
-   A( "n_plus_1", n_plus_1 );
-   A( "minus", minus );
-   A( "plus", plus );
-   A( "times", times );
-   A( "factorial", factorial );
-   A( "power", power );
+   for( const name of [
+      "s",
+      "x0",
+      "c0",
+      "n_plus_1",
+      "minus",
+      "plus",
+      "times",
+      "factorial",
+      "power",
+   ])
+      eval( "console.log( name + \" is majorated by A( \" + " + name + ".ackermann + \", n ).\" );" );
 }
